@@ -1,0 +1,20 @@
+{
+  "skill": "checkpoint-discipline",
+  "trigger": {
+    "positive": [
+      "Make our multi-step agent pipeline resume after a crash without redoing work",
+      "How should graph nodes store state so a restart on another machine works?",
+      "Our long-running agent repeated a side effect after restarting, fix the design"
+    ],
+    "negative": [
+      {
+        "prompt": "Our agent ran too long, add a budget",
+        "owner": "stop-conditions"
+      },
+      {
+        "prompt": "Is the agent ready to ship?",
+        "owner": "ship-gate"
+      }
+    ]
+  }
+}

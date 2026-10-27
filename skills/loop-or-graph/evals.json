@@ -1,0 +1,20 @@
+{
+  "skill": "loop-or-graph",
+  "trigger": {
+    "positive": [
+      "Should this onboarding workflow be a graph or a single agent loop?",
+      "Our agent keeps skipping the approval step, should we model it as a graph?",
+      "Sketch this multi-step agent workflow as a Mermaid graph with retry edges"
+    ],
+    "negative": [
+      {
+        "prompt": "Our agent loop ran 200 turns and cost a fortune, add limits",
+        "owner": "stop-conditions"
+      },
+      {
+        "prompt": "Make our pipeline resume after a crash without redoing finished steps",
+        "owner": "checkpoint-discipline"
+      }
+    ]
+  }
+}

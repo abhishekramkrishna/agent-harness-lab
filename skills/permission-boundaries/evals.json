@@ -1,0 +1,20 @@
+{
+  "skill": "permission-boundaries",
+  "trigger": {
+    "positive": [
+      "Stop our coding agent from editing the tests to make them pass",
+      "Which agent tools should be allow, ask or deny?",
+      "Our agent deleted a file it should not have touched, set up permissions"
+    ],
+    "negative": [
+      {
+        "prompt": "Our agent keeps calling the same tool over and over",
+        "owner": "stop-conditions"
+      },
+      {
+        "prompt": "Analyse this failed run transcript",
+        "owner": "trace-autopsy"
+      }
+    ]
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "skill": "grill-the-harness",
+  "trigger": {
+    "positive": [
+      "I'm about to build a support agent, help me spec its tools, permissions and budgets",
+      "Write a HARNESS.md for our new coding agent before we write the loop",
+      "We're adding a deploy tool to our agent, what harness decisions do we need first?"
+    ],
+    "negative": [
+      {
+        "prompt": "Read this agent trace and tell me where it went wrong",
+        "owner": "trace-autopsy"
+      },
+      {
+        "prompt": "Is this agent reliable enough to launch next week?",
+        "owner": "ship-gate"
+      }
+    ]
+  }
+}

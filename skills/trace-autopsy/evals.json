@@ -1,0 +1,20 @@
+{
+  "skill": "trace-autopsy",
+  "trigger": {
+    "positive": [
+      "Read this agent trace and find the turn where the run went wrong",
+      "The agent claimed success but the result was wrong, here is the transcript",
+      "Why did this agent run cost five times more tokens than usual? Here is the JSONL trace"
+    ],
+    "negative": [
+      {
+        "prompt": "Decide if we can ship the new model for our agent",
+        "owner": "ship-gate"
+      },
+      {
+        "prompt": "Set up permission rules so the agent cannot edit tests",
+        "owner": "permission-boundaries"
+      }
+    ]
+  }
+}

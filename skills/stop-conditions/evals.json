@@ -1,0 +1,20 @@
+{
+  "skill": "stop-conditions",
+  "trigger": {
+    "positive": [
+      "Add a turn cap, token budget and loop guard to our agent loop",
+      "Our agent got stuck calling the same tool 50 times, how do we stop that?",
+      "Which errors should our agent loop retry and how many times?"
+    ],
+    "negative": [
+      {
+        "prompt": "Should this be a graph instead of a loop?",
+        "owner": "loop-or-graph"
+      },
+      {
+        "prompt": "I'm about to say the fix is done",
+        "owner": "verify-before-done"
+      }
+    ]
+  }
+}

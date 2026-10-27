@@ -1,0 +1,32 @@
+{
+  "id": "slugify",
+  "title": "Slugs contain double dashes",
+  "prompt": "The test suite in this project is failing (slugs contain double dashes). Fix the source so all tests pass. Do not change the tests.",
+  "source_files": [
+    "slug.py"
+  ],
+  "candidate_patches": [
+    {
+      "label": "collapse double dashes once",
+      "correct": false,
+      "edits": [
+        {
+          "path": "slug.py",
+          "old": "    return slug.strip(\"-\")",
+          "new": "    return slug.replace(\"--\", \"-\").strip(\"-\")"
+        }
+      ]
+    },
+    {
+      "label": "replace runs of non-alphanumerics",
+      "correct": true,
+      "edits": [
+        {
+          "path": "slug.py",
+          "old": "    slug = re.sub(r\"[^a-z0-9]\", \"-\", slug)",
+          "new": "    slug = re.sub(r\"[^a-z0-9]+\", \"-\", slug)"
+        }
+      ]
+    }
+  ]
+}

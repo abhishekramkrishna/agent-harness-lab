@@ -1,0 +1,20 @@
+{
+  "skill": "verify-before-done",
+  "trigger": {
+    "positive": [
+      "I fixed the bug, I'm about to tell the user it's done",
+      "Before saying the change works, what evidence do I need to show?",
+      "The tests passed before my last edit, can I report the task as fixed?"
+    ],
+    "negative": [
+      {
+        "prompt": "Add a turn cap and token budget to our agent loop",
+        "owner": "stop-conditions"
+      },
+      {
+        "prompt": "Which tools should need approval for our agent?",
+        "owner": "permission-boundaries"
+      }
+    ]
+  }
+}

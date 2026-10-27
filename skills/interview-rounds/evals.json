@@ -1,0 +1,20 @@
+{
+  "skill": "interview-rounds",
+  "trigger": {
+    "positive": [
+      "Ask me questions until the plan has no open decisions left",
+      "Interview me about this design one round at a time with your recommended answers",
+      "There are decisions in this spec only I can make, help me settle them"
+    ],
+    "negative": [
+      {
+        "prompt": "Our agent keeps saying it's done when the tests still fail",
+        "owner": "verify-before-done"
+      },
+      {
+        "prompt": "Should this workflow be a graph or a single agent loop?",
+        "owner": "loop-or-graph"
+      }
+    ]
+  }
+}

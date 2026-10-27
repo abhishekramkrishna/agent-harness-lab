@@ -1,0 +1,135 @@
+{
+  "model": "mock (deterministic scripted policy, not an LLM)",
+  "tasks": [
+    "date-range",
+    "invoice-rounding",
+    "lru-recency",
+    "retry-backoff",
+    "semver-compare",
+    "slugify"
+  ],
+  "baseline_model_calls": {
+    "date-range": 10,
+    "invoice-rounding": 10,
+    "lru-recency": 10,
+    "retry-backoff": 10,
+    "semver-compare": 10,
+    "slugify": 10
+  },
+  "crash_recovery": {
+    "fix": {
+      "restart": {
+        "completed": 6,
+        "runs": 6,
+        "mean_model_calls": 15,
+        "mean_extra_calls_vs_no_crash": 5
+      },
+      "resume": {
+        "completed": 6,
+        "runs": 6,
+        "mean_model_calls": 15,
+        "mean_extra_calls_vs_no_crash": 5
+      }
+    },
+    "verify": {
+      "restart": {
+        "completed": 6,
+        "runs": 6,
+        "mean_model_calls": 15,
+        "mean_extra_calls_vs_no_crash": 5
+      },
+      "resume": {
+        "completed": 6,
+        "runs": 6,
+        "mean_model_calls": 10,
+        "mean_extra_calls_vs_no_crash": 0
+      }
+    },
+    "review_scope": {
+      "restart": {
+        "completed": 6,
+        "runs": 6,
+        "mean_model_calls": 20,
+        "mean_extra_calls_vs_no_crash": 10
+      },
+      "resume": {
+        "completed": 6,
+        "runs": 6,
+        "mean_model_calls": 10,
+        "mean_extra_calls_vs_no_crash": 0
+      }
+    },
+    "gate": {
+      "restart": {
+        "completed": 6,
+        "runs": 6,
+        "mean_model_calls": 20,
+        "mean_extra_calls_vs_no_crash": 10
+      },
+      "resume": {
+        "completed": 6,
+        "runs": 6,
+        "mean_model_calls": 10,
+        "mean_extra_calls_vs_no_crash": 0
+      }
+    },
+    "merge": {
+      "restart": {
+        "completed": 6,
+        "runs": 6,
+        "mean_model_calls": 20,
+        "mean_extra_calls_vs_no_crash": 10
+      },
+      "resume": {
+        "completed": 6,
+        "runs": 6,
+        "mean_model_calls": 10,
+        "mean_extra_calls_vs_no_crash": 0
+      }
+    }
+  },
+  "parallel_review": {
+    "1": {
+      "mean_run_s": 1.01,
+      "mean_review_step_ms": 752
+    },
+    "4": {
+      "mean_run_s": 0.512,
+      "mean_review_step_ms": 253
+    }
+  },
+  "loop_vs_graph": {
+    "loop-minimal": {
+      "runs": 300,
+      "solved_pct": 32.3,
+      "false_success_pct": 20.3,
+      "escalated_pct": 0.0,
+      "mean_model_calls": 11.7
+    },
+    "loop-harness": {
+      "runs": 300,
+      "solved_pct": 100.0,
+      "false_success_pct": 0.0,
+      "escalated_pct": 0.0,
+      "mean_model_calls": 8.1
+    },
+    "graph-minimal": {
+      "runs": 300,
+      "solved_pct": 38.7,
+      "false_success_pct": 0.0,
+      "escalated_pct": 61.3,
+      "mean_model_calls": 16.3
+    },
+    "graph-harness": {
+      "runs": 300,
+      "solved_pct": 100.0,
+      "false_success_pct": 0.0,
+      "escalated_pct": 0.0,
+      "mean_model_calls": 8.1
+    }
+  },
+  "seeds": 50,
+  "fault_rate": 0.3,
+  "elapsed_s": 121.5,
+  "python": "3.13.17"
+}

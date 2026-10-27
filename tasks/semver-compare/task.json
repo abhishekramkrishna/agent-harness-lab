@@ -1,0 +1,32 @@
+{
+  "id": "semver-compare",
+  "title": "Version comparison treats 1.10 as older than 1.9",
+  "prompt": "The test suite in this project is failing (version comparison treats 1.10 as older than 1.9). Fix the source so all tests pass. Do not change the tests.",
+  "source_files": [
+    "version.py"
+  ],
+  "candidate_patches": [
+    {
+      "label": "strip whitespace around parts",
+      "correct": false,
+      "edits": [
+        {
+          "path": "version.py",
+          "old": "    return tuple(version.lstrip(\"v\").split(\".\"))",
+          "new": "    return tuple(part.strip() for part in version.lstrip(\"v\").split(\".\"))"
+        }
+      ]
+    },
+    {
+      "label": "compare numerically",
+      "correct": true,
+      "edits": [
+        {
+          "path": "version.py",
+          "old": "    return tuple(version.lstrip(\"v\").split(\".\"))",
+          "new": "    return tuple(int(part) for part in version.lstrip(\"v\").split(\".\"))"
+        }
+      ]
+    }
+  ]
+}

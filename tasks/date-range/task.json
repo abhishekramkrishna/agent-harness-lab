@@ -1,0 +1,32 @@
+{
+  "id": "date-range",
+  "title": "Date range is off by one and accepts reversed ranges",
+  "prompt": "The test suite in this project is failing (date range is off by one and accepts reversed ranges). Fix the source so all tests pass. Do not change the tests.",
+  "source_files": [
+    "dates.py"
+  ],
+  "candidate_patches": [
+    {
+      "label": "add one day",
+      "correct": false,
+      "edits": [
+        {
+          "path": "dates.py",
+          "old": "    return (end - start).days\n",
+          "new": "    return (end - start).days + 1\n"
+        }
+      ]
+    },
+    {
+      "label": "add one day and reject reversed ranges",
+      "correct": true,
+      "edits": [
+        {
+          "path": "dates.py",
+          "old": "    Raises ValueError if ``end`` is before ``start``.\n    \"\"\"\n    return (end - start).days\n",
+          "new": "    Raises ValueError if ``end`` is before ``start``.\n    \"\"\"\n    if end < start:\n        raise ValueError(f\"end {end} is before start {start}\")\n    return (end - start).days + 1\n"
+        }
+      ]
+    }
+  ]
+}

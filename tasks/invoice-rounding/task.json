@@ -1,0 +1,42 @@
+{
+  "id": "invoice-rounding",
+  "title": "Invoice total rounds 2.675 down to 2.67",
+  "prompt": "The test suite in this project is failing (invoice total rounds 2.675 down to 2.67). Fix the source so all tests pass. Do not change the tests.",
+  "source_files": [
+    "invoice.py"
+  ],
+  "candidate_patches": [
+    {
+      "label": "format with two decimals only",
+      "correct": false,
+      "edits": [
+        {
+          "path": "invoice.py",
+          "old": "    return f\"{round(total, 2):.2f}\"",
+          "new": "    return f\"{total:.2f}\""
+        }
+      ]
+    },
+    {
+      "label": "use Decimal with half-up rounding",
+      "correct": true,
+      "edits": [
+        {
+          "path": "invoice.py",
+          "old": "\"\"\"Invoice totals. Amounts arrive as strings from the billing export.\"\"\"\n",
+          "new": "\"\"\"Invoice totals. Amounts arrive as strings from the billing export.\"\"\"\n\nfrom decimal import ROUND_HALF_UP, Decimal\n"
+        },
+        {
+          "path": "invoice.py",
+          "old": "def line_total(quantity: int, unit_price: str) -> float:\n    return quantity * float(unit_price)",
+          "new": "def line_total(quantity: int, unit_price: str) -> Decimal:\n    return quantity * Decimal(unit_price)"
+        },
+        {
+          "path": "invoice.py",
+          "old": "    total = sum(line_total(q, p) for q, p in lines)\n    return f\"{round(total, 2):.2f}\"",
+          "new": "    total = sum((line_total(q, p) for q, p in lines), Decimal(0))\n    return str(total.quantize(Decimal(\"0.01\"), rounding=ROUND_HALF_UP))"
+        }
+      ]
+    }
+  ]
+}

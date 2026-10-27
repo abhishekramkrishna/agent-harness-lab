@@ -1,0 +1,197 @@
+{
+  "model": "mock (deterministic scripted policy, not an LLM)",
+  "tasks": [
+    "date-range",
+    "invoice-rounding",
+    "lru-recency",
+    "retry-backoff",
+    "semver-compare",
+    "slugify"
+  ],
+  "seeds": 50,
+  "fault_rate": 0.3,
+  "single_fault_solved_pct": {
+    "none": {
+      "minimal": 100,
+      "harness": 100,
+      "no-verifier": 100,
+      "no-loop_guard": 100,
+      "no-protected_paths": 100,
+      "no-retries": 100,
+      "no-arg_validation": 100,
+      "no-compaction": 100
+    },
+    "wrong_first": {
+      "minimal": 100,
+      "harness": 100,
+      "no-verifier": 100,
+      "no-loop_guard": 100,
+      "no-protected_paths": 100,
+      "no-retries": 100,
+      "no-arg_validation": 100,
+      "no-compaction": 100
+    },
+    "false_done": {
+      "minimal": 100,
+      "harness": 100,
+      "no-verifier": 100,
+      "no-loop_guard": 100,
+      "no-protected_paths": 100,
+      "no-retries": 100,
+      "no-arg_validation": 100,
+      "no-compaction": 100
+    },
+    "stuck": {
+      "minimal": 0,
+      "harness": 100,
+      "no-verifier": 100,
+      "no-loop_guard": 0,
+      "no-protected_paths": 100,
+      "no-retries": 100,
+      "no-arg_validation": 100,
+      "no-compaction": 100
+    },
+    "tamper": {
+      "minimal": 0,
+      "harness": 100,
+      "no-verifier": 100,
+      "no-loop_guard": 100,
+      "no-protected_paths": 0,
+      "no-retries": 100,
+      "no-arg_validation": 100,
+      "no-compaction": 100
+    },
+    "bad_args": {
+      "minimal": 100,
+      "harness": 100,
+      "no-verifier": 100,
+      "no-loop_guard": 100,
+      "no-protected_paths": 100,
+      "no-retries": 100,
+      "no-arg_validation": 100,
+      "no-compaction": 100
+    },
+    "rate_limited": {
+      "minimal": 0,
+      "harness": 100,
+      "no-verifier": 100,
+      "no-loop_guard": 100,
+      "no-protected_paths": 100,
+      "no-retries": 0,
+      "no-arg_validation": 100,
+      "no-compaction": 100
+    },
+    "flaky_tool": {
+      "minimal": 100,
+      "harness": 100,
+      "no-verifier": 100,
+      "no-loop_guard": 100,
+      "no-protected_paths": 100,
+      "no-retries": 100,
+      "no-arg_validation": 100,
+      "no-compaction": 100
+    },
+    "wrong_first+false_done": {
+      "minimal": 0,
+      "harness": 100,
+      "no-verifier": 0,
+      "no-loop_guard": 100,
+      "no-protected_paths": 100,
+      "no-retries": 100,
+      "no-arg_validation": 100,
+      "no-compaction": 100
+    }
+  },
+  "mixed": {
+    "minimal": {
+      "runs": 300,
+      "solved_pct": 32.3,
+      "false_success_pct": 20.3,
+      "tampered_pct": 25.7,
+      "crashed_pct": 29.7,
+      "hit_turn_cap_pct": 18.7,
+      "mean_turns": 11.7,
+      "mean_tokens_est": 20796,
+      "mean_tokens_solved_est": 4791
+    },
+    "harness": {
+      "runs": 300,
+      "solved_pct": 100.0,
+      "false_success_pct": 0.0,
+      "tampered_pct": 0.0,
+      "crashed_pct": 0.0,
+      "hit_turn_cap_pct": 0.0,
+      "mean_turns": 7.6,
+      "mean_tokens_est": 6130,
+      "mean_tokens_solved_est": 6130
+    },
+    "no-verifier": {
+      "runs": 300,
+      "solved_pct": 92.3,
+      "false_success_pct": 7.7,
+      "tampered_pct": 0.0,
+      "crashed_pct": 0.0,
+      "hit_turn_cap_pct": 0.0,
+      "mean_turns": 7.3,
+      "mean_tokens_est": 5660,
+      "mean_tokens_solved_est": 5771
+    },
+    "no-loop_guard": {
+      "runs": 300,
+      "solved_pct": 71.7,
+      "false_success_pct": 0.0,
+      "tampered_pct": 0.0,
+      "crashed_pct": 0.0,
+      "hit_turn_cap_pct": 28.3,
+      "mean_turns": 16.4,
+      "mean_tokens_est": 31475,
+      "mean_tokens_solved_est": 5439
+    },
+    "no-protected_paths": {
+      "runs": 300,
+      "solved_pct": 68.7,
+      "false_success_pct": 31.3,
+      "tampered_pct": 31.3,
+      "crashed_pct": 0.0,
+      "hit_turn_cap_pct": 0.0,
+      "mean_turns": 7.0,
+      "mean_tokens_est": 5358,
+      "mean_tokens_solved_est": 5731
+    },
+    "no-retries": {
+      "runs": 300,
+      "solved_pct": 71.3,
+      "false_success_pct": 0.0,
+      "tampered_pct": 0.0,
+      "crashed_pct": 29.7,
+      "hit_turn_cap_pct": 0.0,
+      "mean_turns": 6.4,
+      "mean_tokens_est": 4659,
+      "mean_tokens_solved_est": 6249
+    },
+    "no-arg_validation": {
+      "runs": 300,
+      "solved_pct": 100.0,
+      "false_success_pct": 0.0,
+      "tampered_pct": 0.0,
+      "crashed_pct": 0.0,
+      "hit_turn_cap_pct": 0.0,
+      "mean_turns": 7.6,
+      "mean_tokens_est": 6142,
+      "mean_tokens_solved_est": 6142
+    },
+    "no-compaction": {
+      "runs": 300,
+      "solved_pct": 100.0,
+      "false_success_pct": 0.0,
+      "tampered_pct": 0.0,
+      "crashed_pct": 0.0,
+      "hit_turn_cap_pct": 0.0,
+      "mean_turns": 7.6,
+      "mean_tokens_est": 6130,
+      "mean_tokens_solved_est": 6130
+    }
+  },
+  "elapsed_s": 156.0,
+  "python": "3.13.17"
+}

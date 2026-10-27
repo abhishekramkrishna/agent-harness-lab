@@ -1,0 +1,34 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ["3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: pip install -e '.[dev,claude]'
+      - name: Lint
+        run: ruff check . && ruff format --check .
+      - name: Type check
+        run: mypy
+      - name: Tests
+        run: pytest -q
+      - name: Skills pack (lint, collisions, trigger evals)
+        run: harnesslab skills
+      - name: Benchmarks still reproduce (small run)
+        run: |
+          python bench/loop_bench.py --seeds 5 --out /tmp/results
+          python bench/graph_bench.py --seeds 5 --out /tmp/results

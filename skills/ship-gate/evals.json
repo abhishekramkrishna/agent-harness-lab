@@ -1,0 +1,20 @@
+{
+  "skill": "ship-gate",
+  "trigger": {
+    "positive": [
+      "Is our agent reliable enough to launch? Compute pass^5 and false success",
+      "We want to swap the model behind our agent, decide ship or hold",
+      "Set launch thresholds for the agent before we run the eval suite"
+    ],
+    "negative": [
+      {
+        "prompt": "Interview me about the open decisions in this spec",
+        "owner": "interview-rounds"
+      },
+      {
+        "prompt": "Find the first bad turn in this failed agent run",
+        "owner": "trace-autopsy"
+      }
+    ]
+  }
+}

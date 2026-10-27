@@ -1,0 +1,32 @@
+{
+  "id": "retry-backoff",
+  "title": "Backoff grows linearly and starts at zero",
+  "prompt": "The test suite in this project is failing (backoff grows linearly and starts at zero). Fix the source so all tests pass. Do not change the tests.",
+  "source_files": [
+    "backoff.py"
+  ],
+  "candidate_patches": [
+    {
+      "label": "shift the exponent",
+      "correct": false,
+      "edits": [
+        {
+          "path": "backoff.py",
+          "old": "    return min(cap, base * 2 * attempt)",
+          "new": "    return min(cap, base * 2 ** (attempt + 1))"
+        }
+      ]
+    },
+    {
+      "label": "use base * 2^attempt",
+      "correct": true,
+      "edits": [
+        {
+          "path": "backoff.py",
+          "old": "    return min(cap, base * 2 * attempt)",
+          "new": "    return min(cap, base * 2**attempt)"
+        }
+      ]
+    }
+  ]
+}

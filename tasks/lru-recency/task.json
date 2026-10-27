@@ -1,0 +1,37 @@
+{
+  "id": "lru-recency",
+  "title": "LRU cache evicts recently used keys",
+  "prompt": "The test suite in this project is failing (lru cache evicts recently used keys). Fix the source so all tests pass. Do not change the tests.",
+  "source_files": [
+    "lru.py"
+  ],
+  "candidate_patches": [
+    {
+      "label": "refresh on get only",
+      "correct": false,
+      "edits": [
+        {
+          "path": "lru.py",
+          "old": "            return default\n        return self.data[key]",
+          "new": "            return default\n        self.data.move_to_end(key)\n        return self.data[key]"
+        }
+      ]
+    },
+    {
+      "label": "refresh on get and on put",
+      "correct": true,
+      "edits": [
+        {
+          "path": "lru.py",
+          "old": "            return default\n        return self.data[key]",
+          "new": "            return default\n        self.data.move_to_end(key)\n        return self.data[key]"
+        },
+        {
+          "path": "lru.py",
+          "old": "        self.data[key] = value\n",
+          "new": "        self.data[key] = value\n        self.data.move_to_end(key)\n"
+        }
+      ]
+    }
+  ]
+}
