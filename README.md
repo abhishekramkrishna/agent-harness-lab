@@ -13,7 +13,7 @@ Three parts, one codebase:
 | [**Skills**](#3-the-skills-pack) | Nine agent skills for people who build harnesses, each tied to a test or benchmark in this repo | That a skills pack can be linted and tested like code |
 
 ```bash
-git clone https://github.com/abhishekramkrishna002/agent-harness-lab
+git clone https://github.com/abhishekramkrishna/agent-harness-lab
 cd agent-harness-lab
 pip install -e '.[dev]'
 pytest -q                                      # 69 tests, ~10 s
@@ -200,7 +200,7 @@ What is different about this pack:
 
 The routing check is lexical (TF-IDF), a cheap proxy for how a model picks skills, not a measurement of it. It catches vague and overlapping descriptions on every commit for free.
 
-Install into Claude Code by copying or symlinking the folders into `.claude/skills/`, or with the [`skills` CLI](https://github.com/vercel-labs/skills): `npx skills add abhishekramkrishna002/agent-harness-lab`.
+Install into Claude Code by copying or symlinking the folders into `.claude/skills/`, or with the [`skills` CLI](https://github.com/vercel-labs/skills): `npx skills add abhishekramkrishna/agent-harness-lab`.
 
 ## Running with a real model
 
