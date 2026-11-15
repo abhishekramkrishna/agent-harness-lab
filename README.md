@@ -16,7 +16,7 @@ Three parts, one codebase:
 git clone https://github.com/abhishekramkrishna/agent-harness-lab
 cd agent-harness-lab
 pip install -e '.[dev]'
-pytest -q                                      # 69 tests, ~10 s
+pytest -q                                      # 71 tests, ~10 s
 harnesslab loop --task slugify --faults stuck,tamper --config minimal
 harnesslab loop --task slugify --faults stuck,tamper
 ```
@@ -202,6 +202,31 @@ The routing check is lexical (TF-IDF), a cheap proxy for how a model picks skill
 
 Install into Claude Code by copying or symlinking the folders into `.claude/skills/`, or with the [`skills` CLI](https://github.com/vercel-labs/skills): `npx skills add abhishekramkrishna/agent-harness-lab`.
 
+## 4. Agent memory demos
+
+[`examples/memory_demos.py`](examples/memory_demos.py) holds twelve small, deterministic fixtures for a blog series on agent memory. Each one isolates one engineering behaviour, with no model, network or dependency involved:
+
+| Demo | Behaviour it checks |
+| --- | --- |
+| `01` | Working context, semantic, episodic and procedural memory resolved for one account |
+| `02` | A compacted checkpoint that drops a hard constraint is rejected |
+| `03` | A source revision change rebuilds only the summaries that depend on it |
+| `04` | Only an account owner, for an allowed field and account scope, can write a durable preference |
+| `05` | Effective time and recorded time give "known then" and "corrected history" answers |
+| `06` | The decisive policy comes from an exact lookup; reciprocal rank fusion only ranks supporting context |
+| `07` | An impact query returns only active, in-scope dependency paths |
+| `08` | A single failing counterexample blocks promotion of a learned procedure |
+| `09` | A crash between the provider commit and the local receipt leaves exactly one side effect |
+| `10` | Revoking a grant stops both the tool call and the read of remembered evidence |
+| `11` | A tombstone hides derived copies and refuses a stale rebuild |
+| `12` | A strategy with more successes still fails the release gate on a critical scope failure |
+
+```bash
+python3 examples/memory_demos.py 01     # or 01-12, or all
+```
+
+They are fixtures, not benchmarks: each prints JSON and asserts the expected outcome. Run the same failure cases against your real stores and tools before making a reliability claim.
+
 ## Running with a real model
 
 ```bash
@@ -230,7 +255,7 @@ skills/          the skills pack
 bench/           loop_bench.py, graph_bench.py
 results/         benchmark outputs, committed
 tests/           pytest suite
-examples/        runnable scripts
+examples/        runnable scripts, including the agent-memory demos
 docs/            notes, including the skills landscape
 ```
 
